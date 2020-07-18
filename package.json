@@ -3,20 +3,20 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./server/bin/www",
-    "server": "node ./dist-server/bin/www",
+    "start": "node ./src/bin/www",
+    "server": "node ./dist/bin/www",
     "build": "npm-run-all clean transpile",
     "dev": "NODE_ENV=development npm-run-all build server",
     "prod": "NODE_ENV=production npm-run-all build server",
-    "transpile": "babel ./server --out-dir dist-server",
-    "clean": "rimraf dist-server",
+    "transpile": "babel ./src --out-dir dist",
+    "clean": "rimraf dist",
     "watch:dev": "nodemon",
     "test": "jest"
   },
   "nodemonConfig": {
     "exec": "npm run dev",
     "watch": [
-      "server/*",
+      "src/*",
       "public/*"
     ],
     "ignore": [
@@ -37,21 +37,69 @@
     "npm-run-all": "^4.1.5",
     "rimraf": "^3.0.2"
   },
-  "babel": {
-    "presets": [
-      "@babel/preset-env"
-    ],
-    "plugins": [
-      [
-        "@babel/transform-runtime"
-      ]
-    ]
-  },
   "jest": {
     "testEnvironment": "node"
   },
+  "eslintConfig": {
+    "env": {
+      "browser": true,
+      "node": true,
+      "es11": true
+    },
+    "extends": [
+      "airbnb-base",
+      "plugin:import/errors",
+      "plugin:import/warnings"
+    ],
+    "parserOptions": {
+      "ecmaVersion": 11,
+      "sourceType": "module"
+    },
+    "settings": {
+      "import/resolver": {
+        "babel-module": {}
+      }
+    },
+    "rules": {
+      "brace-style": [
+        "error",
+        "stroustrup"
+      ],
+      "comma-dangle": [
+        "error",
+        "never"
+      ],
+      "no-unused-vars": [
+        "warn"
+      ],
+      "no-var": [
+        "off"
+      ],
+      "one-var": [
+        "off"
+      ]
+    }
+  },
   "devDependencies": {
     "@babel/plugin-transform-runtime": "^7.10.5",
+    "babel-plugin-module-resolver": "^4.0.0",
+    "eslint": "^7.4.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-import-resolver-babel-module": "^5.1.2",
+    "eslint-plugin-import": "^2.22.0",
     "jest": "^26.1.0"
-  }
+  },
+  "description": "",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lng50k/parlay.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lng50k/parlay/issues"
+  },
+  "homepage": "https://github.com/lng50k/parlay#readme"
 }

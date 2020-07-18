@@ -9,9 +9,9 @@ const getModuleRoutes = source =>
     dirent => dirent.isDirectory()
   )
   .map(
-    dirent => { 
-      const url = dirent.name == 'index' ? '' : dirent.name
-      const dir = path.join('../../app', dirent.name, 'etc', 'router')
+    dirent => {
+      const url = '/' + (dirent.name == 'index' ? '' : dirent.name)
+      const dir = path.join("../../app", dirent.name, 'etc', 'router')
       const handler = require(dir)
       
       return { url: url, handler: handler }

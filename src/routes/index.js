@@ -4,7 +4,7 @@ import express from 'express'
 import getModuleRoutes from './modules'
 
 const router = express.Router()
-const routes = getModuleRoutes('server/app')
+const routes = getModuleRoutes('src/app')
 
 routes.map(route => {
     router.use(route.url, route.handler)
