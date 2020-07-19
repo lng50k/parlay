@@ -7,6 +7,9 @@
 import app from '../app'
 import debugLib from 'debug'
 import http from 'http'
+import dotenv from "dotenv";
+
+dotenv.config()
 const debug = debugLib('parlay-node:server')
 
 /**
@@ -15,7 +18,7 @@ const debug = debugLib('parlay-node:server')
 
 var port = normalizePort(process.env.PORT || '3000')
 app.set('port', port)
-
+console.log(`Your port: ${port}`);
 /**
  * Create HTTP server.
  */
